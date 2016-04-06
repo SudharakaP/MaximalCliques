@@ -11,14 +11,6 @@ public interface Graph {
     
     /* Creates an edge from the first vertex to the second. */
     public void addEdge(int from, int to);
-
-    /* Finds the egonet centered at a given node. */
-    public Graph getEgonet(int center);
-
-    /* Returns all SCCs in a directed graph. Recall that the warm up
-     * assignment assumes all Graphs are directed, and we will only 
-     * test on directed graphs. */
-    public List<Graph> getSCCs();
     
     /* Return the graph's connections in a readable format. 
      * The keys in this HashMap are the vertices in the graph.

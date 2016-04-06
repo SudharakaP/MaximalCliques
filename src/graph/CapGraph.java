@@ -5,7 +5,6 @@ package graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 
 /**
  * @author Your name here.
@@ -32,24 +31,6 @@ public class CapGraph implements Graph {
 	public void addEdge(int from, int to) {
 		// TODO Auto-generated method stub
 
-	}
-
-	/* (non-Javadoc)
-	 * @see graph.Graph#getEgonet(int)
-	 */
-	@Override
-	public Graph getEgonet(int center) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see graph.Graph#getSCCs()
-	 */
-	@Override
-	public List<Graph> getSCCs() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	/* (non-Javadoc)
