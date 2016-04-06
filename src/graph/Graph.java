@@ -1,9 +1,7 @@
 package graph;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 /**
  * Interface for defining a Graph Object
@@ -25,5 +23,5 @@ public interface Graph {
      * edge from the corresponding key. 
 	 * The returned representation ignores edge weights and 
 	 * multi-edges.  */
-    public HashMap<Integer, HashSet<Integer>> exportGraph();
+    public Map<Vertex, HashSet<Vertex>> exportGraph();
 } 
