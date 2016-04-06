@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 /**
+ * 
+ * Implements the Graph interface. This is implemented with an 
+ * undirected graph in mind since in this project we are dealing with
+ * a particular LinkedIn graph which is undirected. 
+ * 
  * @author Sudharaka Palamakumbura
- * 
- * 
  *
  */
 public class CapGraph implements Graph {
