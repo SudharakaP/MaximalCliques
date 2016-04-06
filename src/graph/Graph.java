@@ -13,11 +13,11 @@ import java.util.Set;
  */
 public interface Graph {
 	
-    /* Creates a vertex with the given number. */
-    public void addVertex(int num);
+    /* Adds the given vertex to the graph. */
+    public void addVertex(Vertex vertex);
     
-    /* Creates an edge from the first vertex to the second. */
-    public void addEdge(int from, int to);
+    /* Add the given edge between two vertices. */
+    public void addEdge(Vertex v1, Vertex v2);
     
     /* Return the graph's connections in a readable format. 
      * The keys in this HashMap are the vertices in the graph.

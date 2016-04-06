@@ -8,20 +8,21 @@ package graph;
  */
 public class Vertex {
 	
-	private int value;
+	private final int value;
+	
+	/**
+	 * Constructor for creating a vertex.
+	 * 
+	 * @param a
+	 */
+	public Vertex(int a){
+		this.value = a;
+	}
 
 	/**
 	 * @return the value
 	 */
 	public int getValue() {
 		return value;
-	}
-
-	/**
-	 * @param value the value to set
-	 */
-	public void setValue(int value) {
-		this.value = value;
-	}
-	
+	}	
 }
