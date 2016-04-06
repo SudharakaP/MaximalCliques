@@ -5,7 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Interface for defining a Graph Object
+ * 
+ * @author Sudharaka Palamakumbura
+ *
+ */
 public interface Graph {
+	
     /* Creates a vertex with the given number. */
     public void addVertex(int num);
     

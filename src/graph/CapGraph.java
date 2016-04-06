@@ -1,16 +1,12 @@
-/**
- * 
- */
 package graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
 
 /**
- * @author Your name here.
+ * @author Sudharaka Palamakumbura
  * 
- * For the warm up assignment, you must implement your Graph in a class
- * named CapGraph.  Here is the stub file.
+ * 
  *
  */
 public class CapGraph implements Graph {
