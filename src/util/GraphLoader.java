@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
+import graph.Vertex;
+
 public class GraphLoader {
     /**
      * Loads graph with data from a file.
@@ -32,14 +34,14 @@ public class GraphLoader {
             int v1 = sc.nextInt();
             int v2 = sc.nextInt();
             if (!seen.contains(v1)) {
-                g.addVertex(v1);
+                g.addVertex(new Vertex(v1));
                 seen.add(v1);
             }
             if (!seen.contains(v2)) {
-                g.addVertex(v2);
+                g.addVertex(new Vertex(v2));
                 seen.add(v2);
             }
-            g.addEdge(v1, v2);
+            g.addEdge(new Vertex(v1), new Vertex(v2));
         }
         
         sc.close();
