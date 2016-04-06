@@ -6,6 +6,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import util.GraphLoader;
+
 /**
  * 
  * Implements the Graph interface. This is implemented with an 
@@ -33,6 +35,20 @@ public class CapGraph implements Graph {
 	 */
 	public Map<Vertex, HashSet<Vertex>> getAdjList() {
 		return adjList;
+	}
+
+	/**
+	 * @return the numVertex
+	 */
+	public int getNumVertex() {
+		return numVertex;
+	}
+
+	/**
+	 * @return the numEdges
+	 */
+	public int getNumEdges() {
+		return numEdges;
 	}
 
 	/* (non-Javadoc)
@@ -89,5 +105,9 @@ public class CapGraph implements Graph {
 		graph.addEdge(v1, v4);
 		
 		System.out.println(graph.exportGraph());
+		System.out.println(graph.getNumEdges());
+		System.out.println(graph.getNumVertex());
+		
+		GraphLoader graphLoader = new GraphLoader();
 	}
 }
