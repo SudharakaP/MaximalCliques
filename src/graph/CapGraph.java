@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import util.GraphLoaderNew;
+import util.GraphLoader;
 
 /**
  * 
@@ -104,7 +104,7 @@ public class CapGraph implements Graph {
 		
 		CapGraph g2 = new CapGraph();
 		
-		GraphLoaderNew.graphLoader(g2, "data/testadjmatrix.txt");
+		GraphLoader.graphLoader(g2, "data/testadjmatrix.txt");
 		
 		System.out.println(g2.exportGraph());
 		System.out.println(g2.vertices);
