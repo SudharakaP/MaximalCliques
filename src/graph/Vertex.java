@@ -12,7 +12,6 @@ import java.util.Set;
 public class Vertex {
 	
 	private final int value;
-	private Set<Vertex> adjVertices = new HashSet<Vertex>();
 	
 	/**
 	 * Constructor for creating a vertex.
@@ -28,20 +27,6 @@ public class Vertex {
 	 */
 	public int getValue() {
 		return value;
-	}
-
-	/**
-	 * @return the adjVertices
-	 */
-	public Set<Vertex> getAdjVertices() {
-		return adjVertices;
-	}
-
-	/**
-	 * @param adjVertices the adjVertices to set
-	 */
-	public void setAdjVertices(HashSet<Vertex> adjVertices) {
-		this.adjVertices = adjVertices;
 	}
 	
 	@Override

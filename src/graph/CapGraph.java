@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import util.GraphLoader;
+import util.GraphLoaderNew;
 
 /**
  * 
@@ -24,8 +25,8 @@ public class CapGraph implements Graph {
 	private int numEdges;
 	
 	// lists of vertices and edges
-	private List<Vertex> vertices = new ArrayList<Vertex>();
-	private List<Edge> edges = new ArrayList<Edge>();
+	private Set<Vertex> vertices = new HashSet<Vertex>();
+	private Set<Edge> edges = new HashSet<Edge>();
 
 	// hashmap that stores the graph structure
 	private Map<Vertex, HashSet<Vertex>> adjList = new HashMap<Vertex, HashSet<Vertex>>();
@@ -108,6 +109,13 @@ public class CapGraph implements Graph {
 		System.out.println(graph.getNumEdges());
 		System.out.println(graph.getNumVertex());
 		
-		GraphLoader graphLoader = new GraphLoader();
+		CapGraph g2 = new CapGraph();
+		
+		GraphLoaderNew.graphLoader(g2, "data/testadjmatrix.txt");
+		
+		System.out.println(g2.exportGraph());
+		System.out.println(g2.vertices);
+		
+		
 	}
 }
