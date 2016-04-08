@@ -29,7 +29,12 @@ public class GraphLoader {
 		}
 		
 		int row_index = 0;
+		
+		// set delimiter so that the calling next() on the scanner separates the matrix to
+		// strings that contain the elements of the rows of the matrix.
 		sc.useDelimiter("\\[|\\],\\[|\\]");
+		
+		// iterates over each row of the adjacency matrix
 		while (sc.hasNext()){
 			row_index ++;
 			String row = sc.next();
@@ -38,9 +43,11 @@ public class GraphLoader {
 			Vertex v_row = new Vertex(row_index);
 			g.addVertex(v_row);
 			
+			// iterates over each element of the row
 			for (String e: row.split(",")){
 				column_index ++;				
-				
+			
+				// construct the adjacency list of this graph
 				if (Integer.parseInt(e) == 1){
 					Vertex v_col = new Vertex(column_index);
 					g.exportGraph().get(v_row).add(v_col);
