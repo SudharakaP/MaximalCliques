@@ -45,10 +45,8 @@ public class GraphLoaderNew {
 				
 				if (Integer.parseInt(e) == 1){
 					Vertex v_col = new Vertex(column_index);
-					if (!g.exportGraph().keySet().contains(v_col)){		
-						g.addVertex(v_col);
-						g.addEdge(v_row, v_col);
-					}
+					g.exportGraph().get(v_row).add(v_col);
+					g.addEdge(v_row, v_col);
 				}
 			}			
 		}

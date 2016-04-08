@@ -32,13 +32,6 @@ public class CapGraph implements Graph {
 	private Map<Vertex, HashSet<Vertex>> adjList = new HashMap<Vertex, HashSet<Vertex>>();
 
 	/**
-	 * @return the adjList
-	 */
-	public Map<Vertex, HashSet<Vertex>> getAdjList() {
-		return adjList;
-	}
-
-	/**
 	 * @return the numVertex
 	 */
 	public int getNumVertex() {
@@ -79,7 +72,7 @@ public class CapGraph implements Graph {
 	 * @see graph.Graph#exportGraph()
 	 */
 	@Override
-	public Map<Vertex, HashSet<Vertex>> exportGraph() {
+	public Map <Vertex, HashSet<Vertex>> exportGraph() {
 		return adjList;		
 	}
 	
