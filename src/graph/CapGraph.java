@@ -182,7 +182,7 @@ public class CapGraph implements Graph {
 		System.out.println(g2.vertices);
 		System.out.println(g2.getNumVertex());
 		System.out.println(g2.getNumEdges());
-		System.out.println(g2.closeness(new Vertex(4)));
+		System.out.println(g2.closeness(new Vertex(5)));
 		
 	}
 }
