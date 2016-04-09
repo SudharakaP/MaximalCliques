@@ -1,7 +1,10 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -53,8 +56,10 @@ public class CapGraph implements Graph {
 	public double closeness(Vertex vertex){
 		 
 		// if the vertex is not contained in graph return -1 
-		if (!adjList.containsKey(vertex))
+		if (!adjList.containsKey(vertex)){
+			System.err.print("Given vertex not contained in graph.");
 			return -1;
+		}
 		
 		// if the vertex has no adjacent vertices (not connected) return 0
 		if (adjList.get(vertex).size() == 0)
@@ -62,13 +67,51 @@ public class CapGraph implements Graph {
 		
 		double centrality = 0;
 		for (Vertex v: vertices){
-			double shortest = shortestPathLength(vertex, v);
-			centrality += 1/Math.pow(2, shortest);
+			if (!v.equals(vertex)){
+				double shortest = shortestPathLength(vertex, v);
+				centrality += 1/Math.pow(2, shortest);
+			}
 		}
 		return centrality;
 	}
 	
 	public int shortestPathLength(Vertex v1, Vertex v2){
+		
+		// Initialize data structures
+		List<Vertex> queue = new LinkedList<Vertex>();
+		Set<Vertex> visited = new HashSet<Vertex>();
+		Map<Vertex, Vertex> parentMap = new HashMap<Vertex, Vertex>();
+		
+		// Implementation of the bfs algorithm
+		queue.add(v1);
+		visited.add(v1);
+		
+		while(!queue.isEmpty()){
+			Vertex curr = queue.remove(0);
+			
+			if(curr.equals(v2)){
+				List<Vertex> shortestPath = new ArrayList<Vertex>();
+				shortestPath.add(curr);
+				
+				Vertex child = parentMap.get(curr);
+				
+				while(!child.equals(v1)){
+					shortestPath.add(child);
+					child = parentMap.get(child);
+				}
+				shortestPath.add(v1);
+				return shortestPath.size() - 1;
+			}
+			
+			for (Vertex n : adjList.get(curr)){
+				if (!visited.contains(n)){
+					visited.add(n);
+					parentMap.put(n, curr);
+					queue.add(n);
+				}
+			}
+		}
+		// The path from start to goal does not exist
 		return 0;
 	}
 
@@ -133,16 +176,13 @@ public class CapGraph implements Graph {
 		
 		CapGraph g2 = new CapGraph();
 		
-		GraphLoader.graphLoader(g2, "data/LinkedInData.txt");
+		GraphLoader.graphLoader(g2, "data/testadjmatrix.txt");
 		
 		System.out.println(g2.exportGraph());
 		System.out.println(g2.vertices);
 		System.out.println(g2.getNumVertex());
 		System.out.println(g2.getNumEdges());
+		System.out.println(g2.closeness(new Vertex(4)));
 		
-		for (HashSet<Vertex> value: g2.adjList.values()){
-			if (value.size() == 1)
-				System.out.println(value);
-		}	
 	}
 }
