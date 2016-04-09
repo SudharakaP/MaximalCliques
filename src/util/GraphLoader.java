@@ -33,7 +33,7 @@ public class GraphLoader {
 		// set delimiter so that the calling next() on the scanner separates the matrix to
 		// strings that contain the elements of the rows of the matrix.
 		sc.useDelimiter("\\[|\\],\\[|\\]");
-		
+				
 		// iterates over each row of the adjacency matrix
 		while (sc.hasNext()){
 			row_index ++;
@@ -50,7 +50,7 @@ public class GraphLoader {
 				// construct the adjacency list of this graph
 				if (Integer.parseInt(e) == 1){
 					Vertex v_col = new Vertex(column_index);
-					g.exportGraph().get(v_row).add(v_col);
+					g.addVertex(v_col);
 					g.addEdge(v_row, v_col);
 				}
 			}			

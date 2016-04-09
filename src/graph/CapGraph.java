@@ -1,9 +1,7 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -50,9 +48,11 @@ public class CapGraph implements Graph {
 	 */
 	@Override
 	public void addVertex(Vertex vertex) {
-		vertices.add(vertex);
-		adjList.put(vertex, new HashSet<Vertex>());
-		numVertex++;
+		if (!adjList.containsKey(vertex)){
+			vertices.add(vertex);
+			adjList.put(vertex, new HashSet<Vertex>());
+			numVertex++;
+		}
 	}
 
 	/* (non-Javadoc)
@@ -77,7 +77,7 @@ public class CapGraph implements Graph {
 	}
 	
 	public static void main(String[] args){
-		
+		/*
 		CapGraph graph = new CapGraph();
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
@@ -98,17 +98,22 @@ public class CapGraph implements Graph {
 		graph.addEdge(v4, v2);
 		graph.addEdge(v1, v4);
 		
-		System.out.println(graph.exportGraph());
-		System.out.println(graph.getNumEdges());
-		System.out.println(graph.getNumVertex());
+		//System.out.println(graph.exportGraph());
+		//System.out.println(graph.getNumEdges());
+		//System.out.println(graph.getNumVertex());*/
 		
 		CapGraph g2 = new CapGraph();
 		
-		GraphLoader.graphLoader(g2, "data/testadjmatrix.txt");
+		GraphLoader.graphLoader(g2, "data/LinkedInData.txt");
 		
 		System.out.println(g2.exportGraph());
 		System.out.println(g2.vertices);
+		System.out.println(g2.getNumVertex());
+		System.out.println(g2.getNumEdges());
 		
-		
+		for (HashSet<Vertex> value: g2.adjList.values()){
+			if (value.size() == 1)
+				System.out.println(value);
+		}	
 	}
 }
