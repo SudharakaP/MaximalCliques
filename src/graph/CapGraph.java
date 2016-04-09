@@ -55,7 +55,6 @@ public class CapGraph implements Graph {
 		 
 		// if the vertex is not contained in graph return -1 
 		if (!adjList.containsKey(vertex)){
-			System.err.print("Given vertex not contained in graph.");
 			return -1;
 		}
 		
@@ -74,6 +73,9 @@ public class CapGraph implements Graph {
 	}
 	
 	public int shortestPathLength(Vertex v1, Vertex v2){
+		
+		if (!adjList.containsKey(v1) || !adjList.containsKey(v2))
+			return 0;
 		
 		// Initialize data structures
 		List<Vertex> queue = new LinkedList<Vertex>();
@@ -130,8 +132,9 @@ public class CapGraph implements Graph {
 	 */
 	@Override
 	public void addEdge(Vertex v1, Vertex v2) {
-		if (adjList.containsKey(v1) && adjList.containsKey(v2)){
-			edges.add(new Edge(v1, v2));
+		Edge edge = new Edge(v1, v2);
+		if (adjList.containsKey(v1) && adjList.containsKey(v2) && !edges.contains(edge)){
+			edges.add(edge);
 			adjList.get(v1).add(v2);
 			adjList.get(v2).add(v1);
 			numEdges++;

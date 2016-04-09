@@ -1,7 +1,9 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Sudharaka Palamakumbura
@@ -12,22 +14,7 @@ import java.util.List;
 public class Edge {
 	
 	// define fields for adjacent vertices and edges
-	private List<Vertex> vertices = new ArrayList<Vertex>();
-	private List<Edge> adjEdges = new ArrayList<Edge>();
-	
-	/**
-	 * @return the adjEdges
-	 */
-	public List<Edge> getAdjEdges() {
-		return adjEdges;
-	}
-
-	/**
-	 * @param adjEdges the adjEdges to set
-	 */
-	public void setAdjEdges(Edge edge) {
-		this.adjEdges.add(edge);
-	}
+	private Set<Vertex> vertices = new HashSet<Vertex>();
 
 	/**
 	 * Constructor for creating an edge object.
@@ -44,7 +31,38 @@ public class Edge {
 	/**
 	 * @return the vertices
 	 */
-	public List<Vertex> getVertices() {
+	public Set<Vertex> getVertices() {
 		return vertices;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((vertices == null) ? 0 : vertices.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Edge other = (Edge) obj;
+		if (vertices == null) {
+			if (other.vertices != null)
+				return false;
+		} else if (!vertices.equals(other.vertices))
+			return false;
+		return true;
 	} 
 }

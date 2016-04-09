@@ -5,6 +5,9 @@ package graph;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+import java.util.Map;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,7 +31,7 @@ public class CapGraphTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		
+		// setting up graph1
 		Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
 		Vertex v3 = new Vertex(3);
@@ -48,16 +51,8 @@ public class CapGraphTest {
 		graph1.addEdge(v4, v2);
 		graph1.addEdge(v1, v4);
 		
-		//System.out.println(graph.exportGraph());
-		//System.out.println(graph.getNumEdges());
-		//System.out.println(graph.getNumVertex());*/
-			
+		// setting up graph2
 		GraphLoader.graphLoader(graph2, "data/testadjmatrix.txt");
-		
-		//System.out.println(graph2.exportGraph());
-		//System.out.println(graph2.getNumVertex());
-		//System.out.println(graph2.getNumEdges());
-		//System.out.println(graph2.closeness(new Vertex(5)));
 	}
 
 	/**
@@ -85,7 +80,8 @@ public class CapGraphTest {
 	 */
 	@Test
 	public void testCloseness() {
-		fail("Not yet implemented"); // TODO
+		assertEquals(-1.0, emptyGraph.closeness(new Vertex(1)), 0.001);
+		assertEquals(1.75, graph2.closeness(new Vertex(5)), 0.001);
 	}
 
 	/**
@@ -93,7 +89,14 @@ public class CapGraphTest {
 	 */
 	@Test
 	public void testShortestPathLength() {
-		fail("Not yet implemented"); // TODO
+		assertEquals("Shortest path in empty graph", 0, 
+				emptyGraph.shortestPathLength(new Vertex(1), new Vertex(2)));
+		
+		Vertex v1 = new Vertex(10);
+		Vertex v2 = new Vertex(4);
+		graph2.addVertex(v1);
+		graph2.addEdge(v1, v2);
+		assertEquals("Shortest path from vertex 1 to 10", 3, graph2.shortestPathLength(v1, new Vertex(1)));	
 	}
 
 	/**
@@ -101,7 +104,21 @@ public class CapGraphTest {
 	 */
 	@Test
 	public void testAddVertex() {
-		fail("Not yet implemented"); // TODO
+		
+		// adding new vertex to each empty graph and graph1
+		Vertex v1 = new Vertex(23);
+		emptyGraph.addVertex(v1);
+		graph1.addVertex(v1);
+		
+		assertEquals("Adding a vertex to empty graph",1, emptyGraph.getNumVertex());
+		assertEquals("Adding a vertex to graph1", 6, graph1.getNumVertex());
+		
+		// adding already inserted vertex to each graph
+		emptyGraph.addVertex(new Vertex(23));
+		graph1.addVertex(new Vertex(3));
+		
+		assertEquals("Adding a vertex to empty graph", 1, emptyGraph.getNumVertex());
+		assertEquals("Adding a vertex to graph1", 6, graph1.getNumVertex());
 	}
 
 	/**
@@ -109,7 +126,21 @@ public class CapGraphTest {
 	 */
 	@Test
 	public void testAddEdge() {
-		fail("Not yet implemented"); // TODO
+		
+		// adding new edge to each graph		
+		emptyGraph.addEdge(new Vertex(1), new Vertex(2));
+		graph1.addEdge(new Vertex(1), new Vertex(5));
+		graph1.addEdge(new Vertex(5), new Vertex(1));
+		
+		assertEquals("Adding an edge to empty graph", 0, emptyGraph.getNumEdges());
+		assertEquals("Adding an edge to graph1", 7, graph1.getNumEdges());
+		
+		// adding a self-edge (edge that goes from a vertex to itself)
+		graph1.addEdge(new Vertex(1), new Vertex(1));
+		graph1.addEdge(new Vertex(1), new Vertex(1));
+		
+		assertEquals("Adding an edge to empty graph", 0, emptyGraph.getNumEdges());
+		assertEquals("Adding an edge to graph1", 8, graph1.getNumEdges());
 	}
 
 	/**
@@ -117,15 +148,27 @@ public class CapGraphTest {
 	 */
 	@Test
 	public void testExportGraph() {
-		fail("Not yet implemented"); // TODO
+		Map<Vertex, HashSet<Vertex>> map = graph1.exportGraph();
+		
+		assertTrue("Check for correct element", map.containsKey(new Vertex(1)));
+		assertTrue("Check for correct element", map.containsKey(new Vertex(2)));
+		assertTrue("Check for correct element", map.containsKey(new Vertex(3)));
+		assertTrue("Check for correct element", map.containsKey(new Vertex(4)));
+		assertTrue("Check for correct element", map.containsKey(new Vertex(5)));
+		assertFalse("Check for correct element", map.containsKey(new Vertex(6)));
+		
+		assertTrue("Check for correct element", map.get(new Vertex(1)).contains(new Vertex(2)));
+		assertTrue("Check for correct element", map.get(new Vertex(1)).contains(new Vertex(4)));
+		assertTrue("Check for correct element", map.get(new Vertex(2)).contains(new Vertex(1)));
+		assertTrue("Check for correct element", map.get(new Vertex(2)).contains(new Vertex(4)));
+		assertTrue("Check for correct element", map.get(new Vertex(2)).contains(new Vertex(3)));
+		assertTrue("Check for correct element", map.get(new Vertex(3)).contains(new Vertex(4)));
+		assertTrue("Check for correct element", map.get(new Vertex(3)).contains(new Vertex(2)));
+		assertTrue("Check for correct element", map.get(new Vertex(4)).contains(new Vertex(1)));
+		assertTrue("Check for correct element", map.get(new Vertex(4)).contains(new Vertex(2)));
+		assertTrue("Check for correct element", map.get(new Vertex(4)).contains(new Vertex(3)));
+		assertTrue("Check for correct element", map.get(new Vertex(4)).contains(new Vertex(5)));		
+		assertTrue("Check for correct element", map.get(new Vertex(5)).contains(new Vertex(4)));
+		
 	}
-
-	/**
-	 * Test method for {@link graph.CapGraph#main(java.lang.String[])}.
-	 */
-	@Test
-	public void testMain() {
-		fail("Not yet implemented"); // TODO
-	}
-
 }
