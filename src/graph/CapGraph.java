@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import util.GraphLoader;
-
 /**
  * 
  * Implements the Graph interface. This is implemented with an 
@@ -146,43 +144,5 @@ public class CapGraph implements Graph {
 	@Override
 	public Map <Vertex, HashSet<Vertex>> exportGraph() {
 		return adjList;		
-	}
-	
-	public static void main(String[] args){
-		/*
-		CapGraph graph = new CapGraph();
-		Vertex v1 = new Vertex(1);
-		Vertex v2 = new Vertex(2);
-		Vertex v3 = new Vertex(3);
-		Vertex v4 = new Vertex(4);
-		Vertex v5 = new Vertex(5);
-		
-		graph.addVertex(v1);
-		graph.addVertex(v2);
-		graph.addVertex(v3);
-		graph.addVertex(v4);
-		graph.addVertex(v5);
-		
-		graph.addEdge(v1, v2);
-		graph.addEdge(v3, v2);
-		graph.addEdge(v4, v3);
-		graph.addEdge(v5, v4);
-		graph.addEdge(v4, v2);
-		graph.addEdge(v1, v4);
-		
-		//System.out.println(graph.exportGraph());
-		//System.out.println(graph.getNumEdges());
-		//System.out.println(graph.getNumVertex());*/
-		
-		CapGraph g2 = new CapGraph();
-		
-		GraphLoader.graphLoader(g2, "data/testadjmatrix.txt");
-		
-		System.out.println(g2.exportGraph());
-		System.out.println(g2.vertices);
-		System.out.println(g2.getNumVertex());
-		System.out.println(g2.getNumEdges());
-		System.out.println(g2.closeness(new Vertex(5)));
-		
 	}
 }
