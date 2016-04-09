@@ -35,12 +35,41 @@ public class CapGraph implements Graph {
 	public int getNumVertex() {
 		return numVertex;
 	}
-
+	
 	/**
 	 * @return the numEdges
 	 */
 	public int getNumEdges() {
 		return numEdges;
+	}
+
+	/**
+	 * Calculate the closeness centrality of the vertex according to the definition of Dangalchev 
+	 * (http://www.sciencedirect.com/science/article/pii/S0378437105012768).
+	 * 
+	 * @param vertex
+	 * @return closeness centrality of the vertex
+	 */
+	public double closeness(Vertex vertex){
+		 
+		// if the vertex is not contained in graph return -1 
+		if (!adjList.containsKey(vertex))
+			return -1;
+		
+		// if the vertex has no adjacent vertices (not connected) return 0
+		if (adjList.get(vertex).size() == 0)
+			return 0;
+		
+		double centrality = 0;
+		for (Vertex v: vertices){
+			double shortest = shortestPathLength(vertex, v);
+			centrality += 1/Math.pow(2, shortest);
+		}
+		return centrality;
+	}
+	
+	public int shortestPathLength(Vertex v1, Vertex v2){
+		return 0;
 	}
 
 	/* (non-Javadoc)
