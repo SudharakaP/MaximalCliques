@@ -67,7 +67,7 @@ public class CapGraph implements Graph {
 			if (!v.equals(vertex)){
 				double shortest = shortestPathLength(vertex, v);
 				
-				// if path exist add it to centrality measurement
+				// if path exist add its length to centrality measurement
 				if (shortest != 0)
 					centrality += 1/Math.pow(2, shortest);	
 			}
