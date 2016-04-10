@@ -24,7 +24,7 @@ public class DemoClass {
 		
 		// Loading the LinkedIn Graph
 		CapGraph g = new CapGraph();
-		GraphLoader.graphLoader(g, "data/LinkedInData.txt");
+		GraphLoader.graphLoader(g, "data/LinkedInReduced.txt");
 		
 		// Print the number of vertices and edges
 		System.out.println("Number of Nodes: " + g.getNumVertex());
