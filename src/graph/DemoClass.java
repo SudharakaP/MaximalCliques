@@ -36,5 +36,4 @@ public class DemoClass {
 		
 		System.out.println("Closeness Centrality: "+ centralities);
 	}
-
 }
