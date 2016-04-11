@@ -1,12 +1,11 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import algorithms.BreadthFirstSearch;
 
 /**
  * 
@@ -76,54 +75,16 @@ public class CapGraph implements Graph {
 	}
 	
 	/**
-	 * Implements the Breadth First Search algorithm and acts as a helper method for
+	 * Implements the Breadth First Search algorithm using the 
+	 * BreadthFirstSearch class and acts as a helper method for
 	 * closeness(Vertex vertex) method.
 	 * 
 	 * @param v1
 	 * @param v2
 	 * @return
 	 */
-	public int shortestPathLength(Vertex v1, Vertex v2){
-		
-		if (!adjList.containsKey(v1) || !adjList.containsKey(v2))
-			return 0;
-		
-		// Initialize data structures
-		List<Vertex> queue = new LinkedList<Vertex>();
-		Set<Vertex> visited = new HashSet<Vertex>();
-		Map<Vertex, Vertex> parentMap = new HashMap<Vertex, Vertex>();
-		
-		// Implementation of the bfs algorithm
-		queue.add(v1);
-		visited.add(v1);
-		
-		while(!queue.isEmpty()){
-			Vertex curr = queue.remove(0);
-			
-			if(curr.equals(v2)){
-				List<Vertex> shortestPath = new ArrayList<Vertex>();
-				shortestPath.add(curr);
-				
-				Vertex child = parentMap.get(curr);
-				
-				while(!child.equals(v1)){
-					shortestPath.add(child);
-					child = parentMap.get(child);
-				}
-				shortestPath.add(v1);
-				return shortestPath.size() - 1;
-			}
-			
-			for (Vertex n : adjList.get(curr)){
-				if (!visited.contains(n)){
-					visited.add(n);
-					parentMap.put(n, curr);
-					queue.add(n);
-				}
-			}
-		}
-		// The path from start to goal does not exist
-		return 0;
+	public int shortestPathLength(Vertex v1, Vertex v2){		
+		return BreadthFirstSearch.shortestLength(this, v1, v2);		
 	}
 
 	/* (non-Javadoc)
