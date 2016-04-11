@@ -6,7 +6,7 @@ import java.util.List;
 import util.GraphLoader;
 
 /**
- * Main class to find Closeness Centrality of the LinkedIn Graph.
+ * A class that contains the main method to find Closeness Centrality of the LinkedIn Graph.
  * 
  * @author Sudharaka Palamakumbura
  *
