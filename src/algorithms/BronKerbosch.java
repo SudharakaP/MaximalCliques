@@ -1,4 +1,4 @@
-package graph;
+package algorithms;
 
 /**
  * This class implements the Bron-Kerbosh algorithm for finding all Maximal Cliques
