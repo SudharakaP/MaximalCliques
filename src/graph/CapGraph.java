@@ -75,6 +75,14 @@ public class CapGraph implements Graph {
 		return centrality;
 	}
 	
+	/**
+	 * Implements the Breadth First Search algorithm and acts as a helper method for
+	 * closeness(Vertex vertex) method.
+	 * 
+	 * @param v1
+	 * @param v2
+	 * @return
+	 */
 	public int shortestPathLength(Vertex v1, Vertex v2){
 		
 		if (!adjList.containsKey(v1) || !adjList.containsKey(v2))
