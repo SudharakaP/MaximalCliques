@@ -1,6 +1,3 @@
-/**
- * 
- */
 package graph;
 
 import static org.junit.Assert.*;
@@ -14,6 +11,8 @@ import org.junit.Test;
 import util.GraphLoader;
 
 /**
+ * This class implements unit tests for CapGraph class using JUnit
+ * 
  * @author Sudharaka Palamakumbura
  *
  */

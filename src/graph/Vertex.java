@@ -1,5 +1,8 @@
 package graph;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author Sudharaka Palamakumbura
  * 
@@ -9,6 +12,7 @@ package graph;
 public class Vertex {
 	
 	private final int value;
+	private Set<Vertex> adjVertices = new HashSet<Vertex>();
 	
 	/**
 	 * Constructor for creating a vertex.
@@ -60,5 +64,19 @@ public class Vertex {
 		if (value != other.value)
 			return false;
 		return true;
+	}
+
+	/**
+	 * @return the adjVertices
+	 */
+	public Set<Vertex> getAdjVertices() {
+		return adjVertices;
+	}
+
+	/**
+	 * @param v the vertex that is inserted to adjVertex
+	 */
+	public void setAdjVertices(Vertex v) {
+		this.adjVertices.add(v);
 	}
 }

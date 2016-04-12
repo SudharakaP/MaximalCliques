@@ -2,10 +2,12 @@ package graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import algorithms.BreadthFirstSearch;
+import algorithms.BronKerbosch;
 
 /**
  * 
@@ -41,6 +43,10 @@ public class CapGraph implements Graph {
 	 */
 	public int getNumEdges() {
 		return numEdges;
+	}
+	
+	public List<Set<Vertex>> maximalCliques(){
+		return BronKerbosch.maximalCliques(this);
 	}
 
 	/**
@@ -109,6 +115,8 @@ public class CapGraph implements Graph {
 			edges.add(edge);
 			adjList.get(v1).add(v2);
 			adjList.get(v2).add(v1);
+			v1.setAdjVertices(v2);
+			v2.setAdjVertices(v1);
 			numEdges++;
 		}
 	}
