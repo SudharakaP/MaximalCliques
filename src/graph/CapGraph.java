@@ -2,12 +2,10 @@ package graph;
 
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import algorithms.BreadthFirstSearch;
-import algorithms.BronKerbosch;
 
 /**
  * 
@@ -66,7 +64,7 @@ public class CapGraph implements Graph {
 		double centrality = 0;
 		for (Vertex v: vertices.values()){
 			if (!v.equals(vertex)){
-				double shortest = shortestPathLength(vertex, v);
+				double shortest = BreadthFirstSearch.shortestLength(this, vertex, v);
 				
 				// if path exist add its length to centrality measurement
 				if (shortest != 0)
@@ -76,19 +74,6 @@ public class CapGraph implements Graph {
 		return centrality;
 	}
 	
-	/**
-	 * Implements the Breadth First Search algorithm using the 
-	 * BreadthFirstSearch class and acts as a helper method for
-	 * closeness(Vertex vertex) method.
-	 * 
-	 * @param v1
-	 * @param v2
-	 * @return
-	 */
-	public int shortestPathLength(Vertex v1, Vertex v2){		
-		return BreadthFirstSearch.shortestLength(this, v1, v2);		
-	}
-
 	/* (non-Javadoc)
 	 * @see graph.Graph#addVertex(int)
 	 */
