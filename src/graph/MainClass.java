@@ -22,11 +22,12 @@ public class MainClass {
 	public static void main(String[] args){
 		
 		// Array for containing closeness centrality of each node
-		List<Double> centralities = new ArrayList<Double>();
+		//List<Double> centralities = new ArrayList<Double>();
 		
 		// Loading the LinkedIn Graph
 		CapGraph g = new CapGraph();
-		GraphLoader.graphLoader(g, "data/testadjmatrix2.txt");
+		GraphLoader.graphLoader(g, "data/LinkedInReduced.txt");
+	
 		/*Vertex v1 = new Vertex(1);
 		Vertex v2 = new Vertex(2);
 		Vertex v3 = new Vertex(3);
@@ -63,11 +64,11 @@ public class MainClass {
 		
 		//System.out.println("Closeness Centrality: "+ centralities);
 		for (Set<Vertex> set: BronKerbosch.maximalCliques(g))
-			if (set.size() > 0)
+			if (set.size() > 16)
 				System.out.println(set);
 		
 		//System.out.println(g.maximalCliques());
-		System.out.println(g.exportGraph());
+		//System.out.println(g.exportGraph());
 		
 	}
 }

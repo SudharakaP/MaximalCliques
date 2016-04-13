@@ -77,6 +77,6 @@ public class Vertex {
 	 * @param v the vertex that is inserted to adjVertex
 	 */
 	public void setAdjVertices(Vertex v) {
-		this.adjVertices.add(v);
+		adjVertices.add(v);
 	}
 }

@@ -25,7 +25,7 @@ public class CapGraph implements Graph {
 	private int numEdges;
 	
 	// lists of vertices and edges
-	private Set<Vertex> vertices = new HashSet<Vertex>();
+	private Map<Integer, Vertex> vertices = new HashMap<Integer, Vertex>();
 	private Set<Edge> edges = new HashSet<Edge>();
 
 	// hashmap that stores the graph structure
@@ -45,10 +45,6 @@ public class CapGraph implements Graph {
 		return numEdges;
 	}
 	
-	public List<Set<Vertex>> maximalCliques(){
-		return BronKerbosch.maximalCliques(this);
-	}
-
 	/**
 	 * Calculate the closeness centrality of the vertex according to the definition of Dangalchev 
 	 * (http://www.sciencedirect.com/science/article/pii/S0378437105012768).
@@ -68,7 +64,7 @@ public class CapGraph implements Graph {
 			return 0;
 		
 		double centrality = 0;
-		for (Vertex v: vertices){
+		for (Vertex v: vertices.values()){
 			if (!v.equals(vertex)){
 				double shortest = shortestPathLength(vertex, v);
 				
@@ -99,7 +95,7 @@ public class CapGraph implements Graph {
 	@Override
 	public void addVertex(Vertex vertex) {
 		if (!adjList.containsKey(vertex)){
-			vertices.add(vertex);
+			vertices.put(vertex.getValue(), vertex);
 			adjList.put(vertex, new HashSet<Vertex>());
 			numVertex++;
 		}
@@ -115,8 +111,8 @@ public class CapGraph implements Graph {
 			edges.add(edge);
 			adjList.get(v1).add(v2);
 			adjList.get(v2).add(v1);
-			v1.setAdjVertices(v2);
-			v2.setAdjVertices(v1);
+			vertices.get(v1.getValue()).setAdjVertices(v2);
+			vertices.get(v2.getValue()).setAdjVertices(v1);
 			numEdges++;
 		}
 	}
