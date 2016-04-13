@@ -84,21 +84,6 @@ public class CapGraphTest {
 	}
 
 	/**
-	 * Test method for {@link graph.CapGraph#shortestPathLength(graph.Vertex, graph.Vertex)}.
-	 */
-	@Test
-	public void testShortestPathLength() {
-		assertEquals("Shortest path in empty graph", 0, 
-				emptyGraph.shortestPathLength(new Vertex(1), new Vertex(2)));
-		
-		Vertex v1 = new Vertex(10);
-		Vertex v2 = new Vertex(4);
-		graph2.addVertex(v1);
-		graph2.addEdge(v1, v2);
-		assertEquals("Shortest path from vertex 1 to 10", 3, graph2.shortestPathLength(v1, new Vertex(1)));	
-	}
-
-	/**
 	 * Test method for {@link graph.CapGraph#addVertex(graph.Vertex)}.
 	 */
 	@Test
