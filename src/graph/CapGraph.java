@@ -31,9 +31,6 @@ public class CapGraph implements Graph {
 
 	// hashmap that stores the graph structure
 	private Map<Vertex, HashSet<Vertex>> adjList = new HashMap<Vertex, HashSet<Vertex>>();
-	
-	// list of maximal cliques
-	private List<Set<Vertex>> cliques = new ArrayList<Set<Vertex>>();
 
 	/**
 	 * @return the numVertex
