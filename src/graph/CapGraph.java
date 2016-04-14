@@ -1,11 +1,14 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import algorithms.BreadthFirstSearch;
+import algorithms.BronKerbosch;
 
 /**
  * 
@@ -28,6 +31,9 @@ public class CapGraph implements Graph {
 
 	// hashmap that stores the graph structure
 	private Map<Vertex, HashSet<Vertex>> adjList = new HashMap<Vertex, HashSet<Vertex>>();
+	
+	// list of maximal cliques
+	private List<Set<Vertex>> cliques = new ArrayList<Set<Vertex>>();
 
 	/**
 	 * @return the numVertex
@@ -72,6 +78,24 @@ public class CapGraph implements Graph {
 			}
 		}
 		return centrality;
+	}
+	
+	/**
+	 * This method returns a list of all maximal cliques of the graph. The size
+	 * parameter defines the size of the maximal cliques. For example size = 2 outputs
+	 * all maximal cliques whose size is greater than 2. size = 0 outputs all the maximal
+	 * cliques of the graph.
+	 * 
+	 * @param size
+	 * @return List of all maximal cliques whose size is greater than the input size
+	 */
+	public List<Set<Vertex>> maximalCliques(int size){
+		List<Set<Vertex>> maximalCliques = new ArrayList<Set<Vertex>>();
+		
+		for (Set<Vertex> set: BronKerbosch.maximalCliques(this))
+			if (set.size() > size)
+				maximalCliques.add(set);
+		return maximalCliques;
 	}
 	
 	/* (non-Javadoc)

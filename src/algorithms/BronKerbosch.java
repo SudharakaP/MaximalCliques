@@ -16,21 +16,21 @@ import graph.Vertex;
  */
 public class BronKerbosch {
 	
-	private static List<Set<Vertex>> cliques = new ArrayList<Set<Vertex>>();
-	
 	public static List<Set<Vertex>> maximalCliques(graph.Graph graph){
+		
+		List<Set<Vertex>> cliques = new ArrayList<Set<Vertex>>();
 		
 		Set<Vertex> R = new HashSet<Vertex>();
 		Set<Vertex> X = new HashSet<Vertex>();
 		
 		Set<Vertex> P = new HashSet<Vertex>(graph.exportGraph().keySet());
 		
-		bronKerbosch(R, P, X);
+		bronKerbosch(cliques, R, P, X);
 		
 		return cliques;
 	}
 	
-	private static void bronKerbosch(Set<Vertex> R, Set<Vertex> P, Set<Vertex> X){
+	private static void bronKerbosch(List<Set<Vertex>> cliques, Set<Vertex> R, Set<Vertex> P, Set<Vertex> X){
 		
 		//System.out.println(R);
 		//System.out.println(X);
@@ -52,7 +52,7 @@ public class BronKerbosch {
 			PModified.retainAll(N);
 			XModified.retainAll(N);
 			
-			bronKerbosch(RModified, PModified, XModified);
+			bronKerbosch(cliques, RModified, PModified, XModified);
 			P.remove(v);
 			X.add(v);
 		}

@@ -82,6 +82,23 @@ public class CapGraphTest {
 		assertEquals(-1.0, emptyGraph.closeness(new Vertex(1)), 0.001);
 		assertEquals(1.75, graph2.closeness(new Vertex(5)), 0.001);
 	}
+	
+	/**
+	 * Test method for {@link graph.CapGraph#maximalCliques(int size)}.
+	 */
+	@Test
+	public void testMaximalCliques(){
+		assertEquals("Maximal cliques of empty graph", 0, emptyGraph.maximalCliques(0).size());
+		
+		assertEquals("Test maximal cliques for graph1 which have size greater than 0", 3, graph1.maximalCliques(0).size());
+		assertEquals("Test maximal cliques for graph1 which have size greater than 1", 3, graph1.maximalCliques(1).size());
+		assertEquals("Test maximal cliques for graph1 which have size greater than 2", 2, graph1.maximalCliques(2).size());
+		assertEquals("Test maximal cliques for graph1 which have size greater than 3", 0, graph1.maximalCliques(3).size());
+		
+		assertEquals("Test maximal cliques for graph2 which have size greater than 0", 3, graph2.maximalCliques(0).size());
+		assertEquals("Test maximal cliques for graph2 which have size greater than 1", 3, graph2.maximalCliques(1).size());
+		assertEquals("Test maximal cliques for graph2 which have size greater than 2", 2, graph2.maximalCliques(2).size());
+	}
 
 	/**
 	 * Test method for {@link graph.CapGraph#addVertex(graph.Vertex)}.
