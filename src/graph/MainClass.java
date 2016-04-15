@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import algorithms.BronKerbosch;
 import util.GraphLoader;
 
 /**
@@ -26,7 +25,7 @@ public class MainClass {
 		
 		// Loading the LinkedIn Graph
 		CapGraph g = new CapGraph();
-		GraphLoader.graphLoader(g, "data/testadjmatrix.txt");
+		GraphLoader.graphLoader(g, "data/LinkedInReduced.txt");
 		
 		// Print the number of vertices and edges
 		System.out.println("Number of Nodes: " + g.getNumVertex());
@@ -36,16 +35,13 @@ public class MainClass {
 		for (Vertex v: g.exportGraph().keySet())
 			centralities.add(g.closeness(v));
 		
-		List<Set<Vertex>> maximalCliques = new ArrayList<Set<Vertex>>();
-		for (Set<Vertex> set: BronKerbosch.maximalCliques(g))
-			if (set.size() > 0)
-				maximalCliques.add(set);
+		System.out.println("Closeness Centralities: " + centralities);
+				
+		// print all maximal cliques in the graph
+		List<Set<Vertex>> maximalCliques = g.maximalCliques(0);
 		
-		System.out.println("Closeness Centrality: "+ centralities);	
+		for (Set<Vertex> m: maximalCliques)
+			System.out.println(m);
 		
-		System.out.println(maximalCliques);
-		
-		CapGraph g1 = new CapGraph();
-		System.out.println(g1.maximalCliques(0));
 	}
 }

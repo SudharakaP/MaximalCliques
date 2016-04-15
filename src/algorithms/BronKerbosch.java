@@ -31,10 +31,6 @@ public class BronKerbosch {
 	}
 	
 	private static void bronKerbosch(List<Set<Vertex>> cliques, Set<Vertex> R, Set<Vertex> P, Set<Vertex> X){
-		
-		//System.out.println(R);
-		//System.out.println(X);
-		//System.out.println(P);
 				
 		if (P.isEmpty() && X.isEmpty())
 			cliques.add(R);
