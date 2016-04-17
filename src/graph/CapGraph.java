@@ -1,6 +1,8 @@
 package graph;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -99,7 +101,28 @@ public class CapGraph implements Graph {
 		for (Set<Vertex> set: BronKerbosch.maximalCliques(this))
 			if (set.size() > size)
 				maximalCliques.add(set);
+		
+		Collections.sort(maximalCliques, new Comparator<Set<Vertex>>() {
+	        @Override
+	        public int compare(final Set<Vertex> s1, final Set<Vertex> s2) {
+	            return Integer.valueOf(s1.size()).compareTo(Integer.valueOf(s2.size()));
+	        }
+	    });
+		
 		return maximalCliques;
+	}
+	
+	/**
+	 * This method returns the n-th largest clique of this graph
+	 * 
+	 * @param n 
+	 * @return the n-th largest clique of the graph
+	 */
+	public Set<Vertex> maximumCliques(int number){	
+		
+		List<Set<Vertex>> set = maximalCliques(0);
+		
+		return set.get(set.size() - number);
 	}
 	
 	/* (non-Javadoc)

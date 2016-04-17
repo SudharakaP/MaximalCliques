@@ -1,12 +1,9 @@
 package application;
 
-import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
+import java.util.Set;
 
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.swingViewer.ViewPanel;
-import org.graphstream.ui.view.View;
 import org.graphstream.ui.view.Viewer;
 import graph.CapGraph;
 import graph.Vertex;
@@ -46,16 +43,20 @@ public class GraphVisualization {
 			}catch (EdgeRejectedException | IdAlreadyInUseException exception){}
 		}
 		
+		Set<Vertex> maxClique = graph.maximumCliques(1);
 		
+		for (Vertex v: maxClique)
+			graphDisplay.getNode("" + v.getValue()).addAttribute("ui.style", "fill-color: red;");
 
-		graphView = graphDisplay.display();	
-		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: blue; }");
+		
+		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: darkslategray; }");
+		graphView = graphDisplay.display();
+		//System.out.println(maxClique);
 	}
 	
 	public static void main(String[] args){
 		GraphVisualization graphVisu = new GraphVisualization();
 		graphVisu.GraphLoad();
-		
 		
 	}
 }
