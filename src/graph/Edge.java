@@ -1,6 +1,8 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,7 +14,7 @@ import java.util.Set;
 public class Edge {
 	
 	// define fields for adjacent vertices and edges
-	private Set<Vertex> vertices = new HashSet<Vertex>();
+	private List<Vertex> vertices = new ArrayList<Vertex>();
 
 	/**
 	 * Constructor for creating an edge object.
@@ -29,7 +31,7 @@ public class Edge {
 	/**
 	 * @return the vertices
 	 */
-	public Set<Vertex> getVertices() {
+	public List<Vertex> getVertices() {
 		return vertices;
 	}
 

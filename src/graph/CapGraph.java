@@ -29,6 +29,13 @@ public class CapGraph implements Graph {
 	private Map<Integer, Vertex> vertices = new HashMap<Integer, Vertex>();
 	private Set<Edge> edges = new HashSet<Edge>();
 
+	/**
+	 * @return the edges
+	 */
+	public Set<Edge> getEdges() {
+		return edges;
+	}
+
 	// hashmap that stores the graph structure
 	private Map<Vertex, HashSet<Vertex>> adjList = new HashMap<Vertex, HashSet<Vertex>>();
 
