@@ -5,6 +5,10 @@ import java.util.Set;
 
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.Viewer;
+import org.graphstream.ui.view.ViewerListener;
+import org.graphstream.ui.view.ViewerPipe;
+
 import graph.CapGraph;
 import graph.Vertex;
 import util.GraphLoader;
@@ -16,8 +20,10 @@ import util.GraphLoader;
  * @author Sudharaka Palamakumbura
  *
  */
-public class GraphVisualization extends MouseAdapter{
+public class GraphVisualization implements ViewerListener{
 	
+	protected boolean loop = true;
+	Graph graphDisplay;
 	/**
 	 * Loads the graph.
 	 * 
@@ -25,12 +31,14 @@ public class GraphVisualization extends MouseAdapter{
 	 */
 	public void GraphLoad(){
 		
+
+		
 		// Load LinkedIn graph
 		CapGraph graph = new CapGraph();
 		GraphLoader.graphLoader(graph, "data/LinkedInReduced.txt");
 		
 		// Create a new Graph object in the GraphStream library
-		Graph graphDisplay = new SingleGraph("Social Network Graph");
+		graphDisplay = new SingleGraph("Social Network Graph");
 		
 		// Add each vertex to the GraphStream graph along with the vertex number
 		for (Vertex v: graph.exportGraph().keySet()){
@@ -59,7 +67,50 @@ public class GraphVisualization extends MouseAdapter{
 			graphDisplay.getNode("" + v.getValue()).addAttribute("ui.style", "fill-color: red;");
 		
 		// Display the graph
-		graphDisplay.display();	
+		Viewer viewer = graphDisplay.display();	
+		
+		// The default action when closing the view is to quit
+		// the program.
+		viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
+
+		// We connect back the viewer to the graph,
+		// the graph becomes a sink for the viewer.
+		// We also install us as a viewer listener to
+		// intercept the graphic events.
+		ViewerPipe fromViewer = viewer.newViewerPipe();
+		fromViewer.addViewerListener(this);
+		fromViewer.addSink(graphDisplay);
+
+		// Then we need a loop to do our work and to wait for events.
+		// In this loop we will need to call the
+		// pump() method before each use of the graph to copy back events
+		// that have already occurred in the viewer thread inside
+		// our thread.
+
+		while(loop) {
+			fromViewer.pump(); // or fromViewer.blockingPump(); in the nightly builds
+
+			// here your simulation code.
+
+			// You do not necessarily need to use a loop, this is only an example.
+			// as long as you call pump() before using the graph. pump() is non
+			// blocking.  If you only use the loop to look at event, use blockingPump()
+			// to avoid 100% CPU usage. The blockingPump() method is only available from
+			// the nightly builds.
+		}
+	}
+	
+	public void viewClosed(String id) {
+		loop = false;
+	}
+
+	public void buttonPushed(String id) {
+		
+		graphDisplay.getNode(id).addAttribute("ui.style", "fill-color: blue;");
+	}
+
+	public void buttonReleased(String id) {
+		System.out.println("Button released on node "+id);
 	}
 		
 	public static void main(String[] args){
