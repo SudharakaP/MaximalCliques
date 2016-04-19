@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.event.MouseAdapter;
 import java.util.Set;
 
 import org.graphstream.graph.*;
@@ -23,19 +22,23 @@ import util.GraphLoader;
 public class GraphVisualization implements ViewerListener{
 	
 	protected boolean loop = true;
-	Graph graphDisplay;
+	
+	private CapGraph graph;
+	private Graph graphDisplay;
+	private Viewer viewer;
+	
 	/**
-	 * Loads the graph.
+	 * Loads the graph (in GraphStream) by adding vertices and edges from CapGraph. 
+	 * This method also changes color of the graph and displays the nodes associated with 
+	 * the maximum clique in red color.
 	 * 
 	 * @param args
 	 */
 	public void GraphLoad(){
-		
-
-		
+			
 		// Load LinkedIn graph
-		CapGraph graph = new CapGraph();
-		GraphLoader.graphLoader(graph, "data/LinkedInReduced.txt");
+		graph = new CapGraph();
+		GraphLoader.graphLoader(graph, "data/LinkedInReduced.txt");		
 		
 		// Create a new Graph object in the GraphStream library
 		graphDisplay = new SingleGraph("Social Network Graph");
@@ -67,8 +70,15 @@ public class GraphVisualization implements ViewerListener{
 			graphDisplay.getNode("" + v.getValue()).addAttribute("ui.style", "fill-color: red;");
 		
 		// Display the graph
-		Viewer viewer = graphDisplay.display();	
-		
+		viewer = graphDisplay.display();	
+		click();	
+	}
+	
+	/**
+	 * Listens to clicks on nodes of the graph (burrowed from the GraphStream tutorial)
+	 * http://graphstream-project.org/doc/Tutorials/Graph-Visualisation/
+	 */
+	public void click(){
 		// The default action when closing the view is to quit
 		// the program.
 		viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
@@ -100,17 +110,37 @@ public class GraphVisualization implements ViewerListener{
 		}
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.graphstream.ui.view.ViewerListener#viewClosed(java.lang.String)
+	 */
 	public void viewClosed(String id) {
 		loop = false;
 	}
 
-	public void buttonPushed(String id) {
-		
-		graphDisplay.getNode(id).addAttribute("ui.style", "fill-color: blue;");
+	/* (non-Javadoc)
+	 * @see org.graphstream.ui.view.ViewerListener#buttonPushed(java.lang.String)
+	 */
+	public void buttonPushed(String id) {	
+
 	}
 
+	/* (non-Javadoc)
+	 * @see org.graphstream.ui.view.ViewerListener#buttonReleased(java.lang.String)
+	 */
 	public void buttonReleased(String id) {
-		System.out.println("Button released on node "+id);
+		
+		Node node = graphDisplay.getNode(id);
+		
+		if (!node.hasAttribute("ui.style") || node.getAttribute("ui.style")
+				.toString().equals("fill-color: black;")){
+			
+			node.addAttribute("ui.style", "fill-color: purple;");
+			node.addAttribute("ui.label", "" + graph.closeness(new Vertex(Integer.parseInt(id))));
+			
+		}else if (node.getAttribute("ui.style").toString().equals("fill-color: purple;")){
+			node.changeAttribute("ui.style", "fill-color: black;");
+			node.changeAttribute("ui.label", id);
+		}
 	}
 		
 	public static void main(String[] args){
