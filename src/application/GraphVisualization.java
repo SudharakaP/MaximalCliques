@@ -47,7 +47,6 @@ public class GraphVisualization implements ViewerListener{
 		for (Vertex v: graph.exportGraph().keySet()){
 			Node n = graphDisplay.addNode("" + v.getValue());
 			n.addAttribute("ui.label", "" + v.getValue());
-			
 		} 
 		
 		// Add all edges to the GraphStream graph
@@ -60,15 +59,17 @@ public class GraphVisualization implements ViewerListener{
 		}
 		
 		// Change edge color of graph to "darkslategray"
-		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: darkslategray; }");
+		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: slategray; } graph { fill-color: #9cfccc; }");
 		
 		// Set maximum clique
 		Set<Vertex> maxClique = graph.maximumCliques(1);
 		
 		// Display vertices corresponding to the maximum clique in red color
-		for (Vertex v: maxClique)
-			graphDisplay.getNode("" + v.getValue()).addAttribute("ui.style", "fill-color: red;");
-		
+		for (Vertex v: maxClique){
+			Node node = graphDisplay.getNode("" + v.getValue());
+			node.addAttribute("ui.style", "fill-color: red;");
+			node.addAttribute("ui.class", "maxClique");
+		}
 		// Display the graph
 		viewer = graphDisplay.display();	
 		click();	
@@ -115,6 +116,7 @@ public class GraphVisualization implements ViewerListener{
 	 */
 	public void viewClosed(String id) {
 		loop = false;
+		System.exit(0);
 	}
 
 	/* (non-Javadoc)
@@ -132,13 +134,18 @@ public class GraphVisualization implements ViewerListener{
 		Node node = graphDisplay.getNode(id);
 		
 		if (!node.hasAttribute("ui.style") || node.getAttribute("ui.style")
-				.toString().equals("fill-color: black;")){
+				.toString().equals("fill-color: black;") || node.getAttribute("ui.style")
+				.toString().equals("fill-color: red;")) {
 			
 			node.addAttribute("ui.style", "fill-color: purple;");
 			node.addAttribute("ui.label", "" + graph.closeness(new Vertex(Integer.parseInt(id))));
 			
-		}else if (node.getAttribute("ui.style").toString().equals("fill-color: purple;")){
+		}else if (node.getAttribute("ui.style").toString().equals("fill-color: purple;") 
+				&& !node.hasAttribute("ui.class")){
 			node.changeAttribute("ui.style", "fill-color: black;");
+			node.changeAttribute("ui.label", id);
+		}else{
+			node.changeAttribute("ui.style", "fill-color: red;");
 			node.changeAttribute("ui.label", id);
 		}
 	}
@@ -146,6 +153,5 @@ public class GraphVisualization implements ViewerListener{
 	public static void main(String[] args){
 		GraphVisualization graphVisu = new GraphVisualization();
 		graphVisu.GraphLoad();
-		
 	}
 }
