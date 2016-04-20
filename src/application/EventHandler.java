@@ -27,7 +27,7 @@ public class EventHandler implements ViewerListener, KeyListener {
 	private Viewer viewer;
 	private CapGraph graph;
 	
-	private DecimalFormat df = new DecimalFormat(".##");
+	private DecimalFormat df = new DecimalFormat("#.##");
 	
 	public EventHandler(Viewer v, Graph gs, CapGraph g){
 		// Assign variables

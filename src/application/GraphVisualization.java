@@ -22,7 +22,7 @@ public class GraphVisualization {
 	private CapGraph graph;
 	private Graph graphDisplay;
 	private Viewer viewer;
-	private DecimalFormat df = new DecimalFormat(".##");
+	private DecimalFormat df = new DecimalFormat("#.##");
 	
 	public static void main(String[] args){
 		GraphVisualization graphVisu = new GraphVisualization();
