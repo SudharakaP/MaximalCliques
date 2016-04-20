@@ -131,8 +131,10 @@ public class EventHandler implements ViewerListener, KeyListener {
 			for (Node n: graphDisplay.getNodeSet()){
 				n.changeAttribute("ui.label", "" + n.getId());
 		
-				if (n.getAttribute("ui.style").toString().equals("fill-color: purple;")){
+				if (!n.hasAttribute("ui.class")){
 					n.changeAttribute("ui.style", "fill-color: black;");
+				}else{
+					n.changeAttribute("ui.style", "fill-color: red;");
 				}
 			}
 		}
