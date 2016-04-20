@@ -178,7 +178,7 @@ public class GraphVisualization implements ViewerListener, KeyListener {
 				n.changeAttribute("ui.label", n.getAttribute("centrality").toString());
 		}else if (key.getKeyChar() == 'i'){
 			for (Node n: graphDisplay.getNodeSet())
-				n.changeAttribute("ui.label", "" + n.getIndex());
+				n.changeAttribute("ui.label", "" + n.getId());
 		}
 	}
 
