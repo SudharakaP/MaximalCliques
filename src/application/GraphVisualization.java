@@ -1,5 +1,7 @@
 package application;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 import java.util.Set;
 
@@ -20,13 +22,19 @@ import util.GraphLoader;
  * @author Sudharaka Palamakumbura
  *
  */
-public class GraphVisualization implements ViewerListener{
+public class GraphVisualization implements ViewerListener, KeyListener {
 	
 	protected boolean loop = true;
 	
 	private CapGraph graph;
 	private Graph graphDisplay;
 	private Viewer viewer;
+	private DecimalFormat df = new DecimalFormat(".##");
+	
+	public static void main(String[] args){
+		GraphVisualization graphVisu = new GraphVisualization();
+		graphVisu.GraphLoad();
+	}
 	
 	/**
 	 * Loads the graph (in GraphStream) by adding vertices and edges from CapGraph. 
@@ -39,15 +47,16 @@ public class GraphVisualization implements ViewerListener{
 			
 		// Load LinkedIn graph
 		graph = new CapGraph();
-		GraphLoader.graphLoader(graph, "data/LinkedInReduced.txt");		
+		GraphLoader.graphLoader(graph, "data/LinkedInReduced.txt");	
 		
 		// Create a new Graph object in the GraphStream library
 		graphDisplay = new SingleGraph("Social Network Graph");
 		
-		// Add each vertex to the GraphStream graph along with the vertex number
+		// Add each vertex to the GraphStream graph along with the vertex number and Closeness Centrality
 		for (Vertex v: graph.exportGraph().keySet()){
 			Node n = graphDisplay.addNode("" + v.getValue());
 			n.addAttribute("ui.label", "" + v.getValue());
+			n.addAttribute("centrality", df.format(graph.closeness(new Vertex(v.getValue()))));
 		} 
 		
 		// Add all edges to the GraphStream graph
@@ -60,7 +69,8 @@ public class GraphVisualization implements ViewerListener{
 		}
 		
 		// Change edge color of graph to "darkslategray"
-		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: slategray; } graph { fill-color: #9cfccc; }");
+		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: slategray; }"
+				+ "graph { fill-color: #9cfccc; }");
 		
 		// Set maximum clique
 		Set<Vertex> maxClique = graph.maximumCliques(1);
@@ -72,7 +82,10 @@ public class GraphVisualization implements ViewerListener{
 			node.addAttribute("ui.class", "maxClique");
 		}
 		// Display the graph
-		viewer = graphDisplay.display();	
+		viewer = graphDisplay.display();
+		
+		// Add key and mouse listeners.
+		viewer.getDefaultView().addKeyListener(this);
 		click();	
 	}
 	
@@ -112,6 +125,7 @@ public class GraphVisualization implements ViewerListener{
 		}
 	}
 	
+	@Override
 	/* (non-Javadoc)
 	 * @see org.graphstream.ui.view.ViewerListener#viewClosed(java.lang.String)
 	 */
@@ -120,13 +134,7 @@ public class GraphVisualization implements ViewerListener{
 		System.exit(0);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.graphstream.ui.view.ViewerListener#buttonPushed(java.lang.String)
-	 */
-	public void buttonPushed(String id) {	
-
-	}
-
+	@Override
 	/* (non-Javadoc)
 	 * @see org.graphstream.ui.view.ViewerListener#buttonReleased(java.lang.String)
 	 */
@@ -141,7 +149,6 @@ public class GraphVisualization implements ViewerListener{
 				.toString().equals("fill-color: red;")) {
 			
 			// Round the Closeness Centrality to two decimals.
-			DecimalFormat df = new DecimalFormat(".##");
 			String closeness = df.format(graph.closeness(new Vertex(Integer.parseInt(id))));
 			
 			node.addAttribute("ui.style", "fill-color: purple;");
@@ -161,9 +168,26 @@ public class GraphVisualization implements ViewerListener{
 			node.changeAttribute("ui.label", id);
 		}
 	}
-	
-	public static void main(String[] args){
-		GraphVisualization graphVisu = new GraphVisualization();
-		graphVisu.GraphLoad();
+
+	/* (non-Javadoc)
+	 * @see java.awt.event.KeyListener#keyReleased(java.awt.event.KeyEvent)
+	 */
+	public void keyReleased(KeyEvent key) {
+		if (key.getKeyChar() == 'c'){
+			for (Node n: graphDisplay.getNodeSet())
+				n.changeAttribute("ui.label", n.getAttribute("centrality").toString());
+		}else if (key.getKeyChar() == 'i'){
+			for (Node n: graphDisplay.getNodeSet())
+				n.changeAttribute("ui.label", "" + n.getIndex());
+		}
 	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
+
+	@Override
+	public void buttonPushed(String arg0) {}
 }
