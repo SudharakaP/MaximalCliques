@@ -1,5 +1,6 @@
 package application;
 
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.Set;
 
@@ -40,7 +41,8 @@ public class GraphVisualization {
 			
 		// Load LinkedIn graph
 		graph = new CapGraph();
-		GraphLoader.graphLoader(graph, "data/LinkedInReduced.txt");	
+		InputStream inputStream = ClassLoader.getSystemResourceAsStream("LinkedInReduced.txt");
+		GraphLoader.graphLoader(graph, inputStream);	
 		
 		// Create a new Graph object in the GraphStream library
 		graphDisplay = new SingleGraph("Social Network Graph");

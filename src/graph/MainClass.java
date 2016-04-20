@@ -1,5 +1,6 @@
 package graph;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +26,8 @@ public class MainClass {
 		
 		// Loading the LinkedIn Graph
 		CapGraph g = new CapGraph();
-		GraphLoader.graphLoader(g, "data/LinkedInReduced.txt");
+		InputStream inputStream = ClassLoader.getSystemResourceAsStream("LinkedInReduced.txt");
+		GraphLoader.graphLoader(g, inputStream);	
 		
 		// Print the number of vertices and edges
 		System.out.println("Number of Nodes: " + g.getNumVertex());

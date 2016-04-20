@@ -1,6 +1,6 @@
 package util;
 
-import java.io.File;
+import java.io.InputStream;
 import java.util.Scanner;
 import graph.Vertex;
 
@@ -18,11 +18,11 @@ public class GraphLoader {
 	 * @param g
 	 * @param filename
 	 */
-	public static void graphLoader(graph.Graph g, String filename){
+	public static void graphLoader(graph.Graph g, InputStream inputStream){
 		
 		Scanner sc;
 		try{
-			sc = new Scanner(new File(filename));
+			sc = new Scanner(inputStream);
 		}catch (Exception e){
 			e.printStackTrace();
 			return;

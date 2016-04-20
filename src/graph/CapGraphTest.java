@@ -2,6 +2,7 @@ package graph;
 
 import static org.junit.Assert.*;
 
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -51,7 +52,8 @@ public class CapGraphTest {
 		graph1.addEdge(v1, v4);
 		
 		// setting up graph2
-		GraphLoader.graphLoader(graph2, "data/testadjmatrix.txt");
+		InputStream inputStream = ClassLoader.getSystemResourceAsStream("testadjmatrix.txt");
+		GraphLoader.graphLoader(graph2, inputStream);
 	}
 
 	/**
