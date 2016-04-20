@@ -4,7 +4,6 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.Set;
 
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import org.graphstream.graph.*;

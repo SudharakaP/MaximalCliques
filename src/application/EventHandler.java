@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 
-import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 import org.graphstream.graph.Graph;
