@@ -4,6 +4,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.text.DecimalFormat;
 
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.ui.view.Viewer;
@@ -137,6 +140,17 @@ public class EventHandler implements ViewerListener, KeyListener {
 					n.changeAttribute("ui.style", "fill-color: red;");
 				}
 			}
+		}else if (key.getKeyChar() == 'h'){
+			// Display information regarding control keys
+			JOptionPane.showMessageDialog(viewer.getDefaultView(), 
+					"Page-Up: Zoom-In\n\n"
+					+ "Page-Down: Zoom-Out\n\n"
+					+ "Left Click on Node: Closeness Centrality of Node\n\n"
+					+ "C: Display Closeness Centralities of all Nodes\n\n"
+					+ "I: Indices of all Nodes\n\n"
+					+ "H: View Key Controls\n\n",
+					"Control Key Information", 
+					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
