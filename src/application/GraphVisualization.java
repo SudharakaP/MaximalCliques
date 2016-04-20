@@ -85,14 +85,16 @@ public class GraphVisualization {
 		viewer = graphDisplay.display();
 		
 		// Display information regarding control keys
-		JOptionPane.showMessageDialog(viewer.getDefaultView(), 
-				"Page-Up: Zoom-In\n\n"
+		JOptionPane.showMessageDialog(viewer.getDefaultView(),
+				"Arrow Keys: Move View\n\n"
+				+ "Page-Up: Zoom-In\n\n"
 				+ "Page-Down: Zoom-Out\n\n"
 				+ "Left Click on Node: Closeness Centrality of Node\n\n"
 				+ "C: Display Closeness Centralities of all Nodes\n\n"
 				+ "I: Indices of all Nodes\n\n"
 				+ "H: View Key Controls\n\n",
-				"Control Key Information", 
+				"Control Key Information",
+				
 				JOptionPane.INFORMATION_MESSAGE);
 
 		EventHandler eventHandle = new EventHandler(viewer, graphDisplay, graph);	

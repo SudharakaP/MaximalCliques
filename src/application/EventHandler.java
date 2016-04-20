@@ -142,8 +142,9 @@ public class EventHandler implements ViewerListener, KeyListener {
 			}
 		}else if (key.getKeyChar() == 'h'){
 			// Display information regarding control keys
-			JOptionPane.showMessageDialog(viewer.getDefaultView(), 
-					"Page-Up: Zoom-In\n\n"
+			JOptionPane.showMessageDialog(viewer.getDefaultView(),
+					"Arrow Keys: Move View\n\n"
+					+ "Page-Up: Zoom-In\n\n"
 					+ "Page-Down: Zoom-Out\n\n"
 					+ "Left Click on Node: Closeness Centrality of Node\n\n"
 					+ "C: Display Closeness Centralities of all Nodes\n\n"
