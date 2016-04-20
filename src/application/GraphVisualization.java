@@ -4,6 +4,8 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.util.Set;
 
+import javax.swing.JFrame;
+
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
@@ -47,6 +49,9 @@ public class GraphVisualization {
 		// Create a new Graph object in the GraphStream library
 		graphDisplay = new SingleGraph("Social Network Graph");
 		
+		// Set title of the GUI
+		graphDisplay.setAttribute("ui.title", "Linkedin Graph Visualization");
+		
 		// Add each vertex to the GraphStream graph along with the vertex number and Closeness Centrality
 		for (Vertex v: graph.exportGraph().keySet()){
 			Node n = graphDisplay.addNode("" + v.getValue());
@@ -64,8 +69,7 @@ public class GraphVisualization {
 		}
 		
 		// Change edge color of graph to "darkslategray"
-		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: slategray; }"
-				+ "graph { fill-color: #9cfccc; }");
+		graphDisplay.addAttribute("ui.stylesheet", "edge { fill-color: slategray; }");
 		
 		// Set maximum clique
 		Set<Vertex> maxClique = graph.maximumCliques(1);
@@ -78,7 +82,7 @@ public class GraphVisualization {
 		}
 		// Display the graph
 		viewer = graphDisplay.display();
-		
+
 		EventHandler eventHandle = new EventHandler(viewer, graphDisplay, graph);	
 		eventHandle.click();
 	}
