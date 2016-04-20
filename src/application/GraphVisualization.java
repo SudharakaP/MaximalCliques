@@ -1,5 +1,6 @@
 package application;
 
+import java.text.DecimalFormat;
 import java.util.Set;
 
 import org.graphstream.graph.*;
@@ -139,8 +140,12 @@ public class GraphVisualization implements ViewerListener{
 				.toString().equals("fill-color: black;") || node.getAttribute("ui.style")
 				.toString().equals("fill-color: red;")) {
 			
+			// Round the Closeness Centrality to two decimals.
+			DecimalFormat df = new DecimalFormat(".##");
+			String closeness = df.format(graph.closeness(new Vertex(Integer.parseInt(id))));
+			
 			node.addAttribute("ui.style", "fill-color: purple;");
-			node.addAttribute("ui.label", "" + graph.closeness(new Vertex(Integer.parseInt(id))));
+			node.addAttribute("ui.label", closeness);
 		
 		// else if the node color is purple (already clicked node) and its original color is
 		// black and change its color to black.
@@ -150,7 +155,7 @@ public class GraphVisualization implements ViewerListener{
 			node.changeAttribute("ui.label", id);
 			
 		// else (if the node is purple and its original color is red) then change node
-		// color to red and lable it with its ID.
+		// color to red and label it with its ID.
 		}else{
 			node.changeAttribute("ui.style", "fill-color: red;");
 			node.changeAttribute("ui.label", id);
