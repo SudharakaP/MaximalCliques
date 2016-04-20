@@ -1,6 +1,8 @@
 package graph;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -29,8 +31,10 @@ public class Edge {
 	/**
 	 * @return the vertices
 	 */
-	public Vertex[] getVertices() {
-		return (Vertex[])vertices.toArray();
+	public List<Vertex> getVertices() {
+		List<Vertex> list = new ArrayList<Vertex>();
+		list.addAll(vertices);
+		return list;
 	}
 
 	/* (non-Javadoc)

@@ -24,10 +24,10 @@ public class GraphVisualization {
 	private Viewer viewer;
 	private DecimalFormat df = new DecimalFormat(".##");
 	
-	//public static void main(String[] args){
-		//GraphVisualization graphVisu = new GraphVisualization();
-		//graphVisu.GraphLoad();
-	//}
+	public static void main(String[] args){
+		GraphVisualization graphVisu = new GraphVisualization();
+		graphVisu.GraphLoad();
+	}
 	
 	/**
 	 * Loads the graph (in GraphStream) by adding vertices and edges from CapGraph. 
@@ -54,8 +54,8 @@ public class GraphVisualization {
 		
 		// Add all edges to the GraphStream graph
 		for (graph.Edge e: graph.getEdges()){
-			int node1 = e.getVertices()[0].getValue();
-			int node2 = e.getVertices()[1].getValue();
+			int node1 = e.getVertices().get(0).getValue();
+			int node2 = e.getVertices().get(1).getValue();
 			try{
 				graphDisplay.addEdge(node1 + "" + node2, "" + node1, "" + node2);
 			}catch (EdgeRejectedException | IdAlreadyInUseException exception){}
