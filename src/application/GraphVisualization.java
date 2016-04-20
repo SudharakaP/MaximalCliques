@@ -133,23 +133,30 @@ public class GraphVisualization implements ViewerListener{
 		
 		Node node = graphDisplay.getNode(id);
 		
+		// If node color is black or node color is red, change the color to purple and display 
+		// Closeness Centrality.
 		if (!node.hasAttribute("ui.style") || node.getAttribute("ui.style")
 				.toString().equals("fill-color: black;") || node.getAttribute("ui.style")
 				.toString().equals("fill-color: red;")) {
 			
 			node.addAttribute("ui.style", "fill-color: purple;");
 			node.addAttribute("ui.label", "" + graph.closeness(new Vertex(Integer.parseInt(id))));
-			
+		
+		// else if the node color is purple (already clicked node) and its original color is
+		// black and change its color to black.
 		}else if (node.getAttribute("ui.style").toString().equals("fill-color: purple;") 
 				&& !node.hasAttribute("ui.class")){
 			node.changeAttribute("ui.style", "fill-color: black;");
 			node.changeAttribute("ui.label", id);
+			
+		// else (if the node is purple and its original color is red) then change node
+		// color to red and lable it with its ID.
 		}else{
 			node.changeAttribute("ui.style", "fill-color: red;");
 			node.changeAttribute("ui.label", id);
 		}
 	}
-		
+	
 	public static void main(String[] args){
 		GraphVisualization graphVisu = new GraphVisualization();
 		graphVisu.GraphLoad();
