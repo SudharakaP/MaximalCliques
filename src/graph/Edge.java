@@ -1,7 +1,7 @@
 package graph;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Sudharaka Palamakumbura
@@ -12,7 +12,7 @@ import java.util.List;
 public class Edge {
 	
 	// define fields for adjacent vertices and edges
-	private List<Vertex> vertices = new ArrayList<Vertex>();
+	private Set<Vertex> vertices = new HashSet<Vertex>();
 
 	/**
 	 * Constructor for creating an edge object.
@@ -29,8 +29,8 @@ public class Edge {
 	/**
 	 * @return the vertices
 	 */
-	public List<Vertex> getVertices() {
-		return vertices;
+	public Vertex[] getVertices() {
+		return (Vertex[])vertices.toArray();
 	}
 
 	/* (non-Javadoc)
