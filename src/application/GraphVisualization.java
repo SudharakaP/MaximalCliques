@@ -5,7 +5,6 @@ import java.text.DecimalFormat;
 import java.util.Set;
 
 import javax.swing.JOptionPane;
-
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.Viewer;
@@ -27,7 +26,9 @@ public class GraphVisualization {
 	private Viewer viewer;
 	private DecimalFormat df = new DecimalFormat("#.##");
 	
-	public static void main(String[] args){
+	public static void main(String[] args){	
+		
+		// Load Graph
 		GraphVisualization graphVisu = new GraphVisualization();
 		graphVisu.GraphLoad();
 	}
@@ -80,6 +81,7 @@ public class GraphVisualization {
 			node.addAttribute("ui.style", "fill-color: red;");
 			node.addAttribute("ui.class", "maxClique");
 		}
+		
 		// Display the graph
 		viewer = graphDisplay.display();
 		
