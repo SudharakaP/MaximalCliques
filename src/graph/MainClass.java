@@ -42,8 +42,8 @@ public class MainClass {
 		// print all maximal cliques in the graph
 		List<Set<Vertex>> maximalCliques = g.maximalCliques(0);
 		
-		System.out.println("Number of Maximal Cliques: " + maximalCliques.size());
+		//System.out.println("Number of Maximal Cliques: " + maximalCliques.size());
 		
-		//System.out.println(maximalCliques);	
+		System.out.println(maximalCliques);	
 	}
 }
