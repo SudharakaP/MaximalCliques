@@ -76,7 +76,7 @@ Correctness verification of all the methods were done by performing unit tests w
 
 Note that some of the methods, such as the ones in the “application” package were tested by running the program with different inputs. This includes all functionality associated with the GUI. I tested the GUI with different input and edge cases to see if the behaviour is as expected.
 
-**Note:** Along with the code I have also included a file named, ClassDiagram.ucls which is generated using the [OpenAid UML Explorer](http://www.objectaid.com/class-diagram) for Eclipse. This file provides a UML class diagram of classes in this project.
+**Note:** Along with the code I have also included a file named, ClassDiagram.ucls which is generated using the [OpenAid UML Explorer](http://www.objectaid.com/class-diagram) for Eclipse. This file provides a UML class diagram of the project.
 
 ## Setup
 
