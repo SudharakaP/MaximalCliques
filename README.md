@@ -1,6 +1,6 @@
 # MaximalCliques
 
-This repository implements algorithms to find [Maximal Cliques](https://en.wikipedia.org/wiki/Clique_problem) and [Closeness Centrality](https://en.wikipedia.org/wiki/Centrality#Closeness_centrality) of a social network graph. This project was done as part of the Capstone Project on Analyzing Social Network Data offered by the University of MaryLand in conjunction with Coursera. 
+This repository implements algorithms to find [Maximal Cliques](https://en.wikipedia.org/wiki/Clique_problem) and [Closeness Centrality](https://en.wikipedia.org/wiki/Centrality#Closeness_centrality) of a social network graph. This project was done as part of the Capstone Project on Analyzing Social Network Data offered by the University of California, San Diego in conjunction with Coursera. 
 
 https://www.coursera.org/learn/intermediate-programming-capstone
 
