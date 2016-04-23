@@ -26,7 +26,7 @@ http://www.sciencedirect.com/science/article/pii/S0378437105012768
 
 Although there are several definitions of closeness centrality the one given by Dangalchev is the most appropriate in the case of non-connected graphs (which is most often the case with social network graphs). To find the closeness centrality of a node according to the definition of Dangalchev, we need to find the shortest distance between that node and every other node in the graph. These shortest distances were obtained by using the Breadth First Search algorithm. As for the data structures, the graph was stored as an adjacency list and I think given the sparseness of the graph this is appropriate. 
 
-### Goal 2: Find all the Maximal Cliques of the graph. (Clique Problem).
+### Goal 2: Find all the Maximal Cliques of the graph (Clique Problem).
 
 A Clique of a graph is a set of vertices that forms a Complete Sub-graph. A maximal clique is a clique that cannot be extended by including one more adjacent vertex. In this part of the project I aim to find all the maximal cliques of the graph. This is commonly known as the Clique Problem and is NP-complete. Although there are algorithms to find all the maximal cliques of a graph they all have exponential running time. In solving this problem I plan to use the Bron–Kerbosch algorithm which is the most common one that is being used to tackle this problem currently. The maximal cliques of a graph give an insight into which subsets of nodes are closely knit. In other words in a social network the maximal cliques represent clusters where all members know each other.
 
@@ -58,7 +58,7 @@ If you are interested in running this application, I have packaged it in a runna
 
 Just double click on it to start the application. Note that it make take a few seconds to load the application and I have added a Splash Screen to reduce your boredom while waiting.
 
-## Correctness verification (i.e. testing):
+## Correctness verification (i.e. Testing):
 
 Correctness verification of all the methods were done by performing unit tests with JUnit. The tests that were performed are listed below.
 
