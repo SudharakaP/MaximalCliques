@@ -16,7 +16,7 @@ I obtained the connections/friendships between my list of connections through So
 
 The data that I obtained comes as an adjacency matrix where the rows and columns represent each member of the graph and the elements are either 1 or 0 depending on whether two members (represented by the respective row and column) are connected or not. The size of this matrix is the number of connections extracted, which is 499 (500 including myself). The number of edges is the number of connections between these nodes which is found out to be, 3331.
 
-## Algorithms, Data Structures and Answer to the Questions:
+## Algorithms and Data Structures:
 
 ### Goal 1: Calculate the Closeness Centrality of all the nodes in the graph.
 
