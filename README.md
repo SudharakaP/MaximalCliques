@@ -8,7 +8,7 @@ https://www.coursera.org/learn/intermediate-programming-capstone
 
 The project aims to find the [Closeness Centrality](https://en.wikipedia.org/wiki/Centrality#Closeness_centrality) of all the nodes in my LinkedIn network as well as the [Maximal Cliques](https://en.wikipedia.org/wiki/Clique_problem). In addition the LinkedIn graph is visualized using a GUI with some interactivity. For a quick demo please download the JAR file under the releases page and double click on it to run the program. 
 
-## Data 
+## Data Set
 
 The data set that I used for this project comes from my LinkedIn connections list. LinkedIn is a social networking site focused on professional connections and each member has the ability to connect with others in the network. Each connection is bidirectional; when one member sends a connection request, the other member has to approve it in order for the connection to form.
 
@@ -28,7 +28,7 @@ Although there are several definitions of closeness centrality the one given by 
 
 ### Goal 2: Find all the Maximal Cliques of the graph (Clique Problem).
 
-A Clique of a graph is a set of vertices that forms a Complete Sub-graph. A maximal clique is a clique that cannot be extended by including one more adjacent vertex. In this part of the project I aim to find all the maximal cliques of the graph. This is commonly known as the Clique Problem and is NP-complete. Although there are algorithms to find all the maximal cliques of a graph they all have exponential running time. In solving this problem I plan to use the Bron–Kerbosch algorithm which is the most common one that is being used to tackle this problem currently. The maximal cliques of a graph give an insight into which subsets of nodes are closely knit. In other words in a social network the maximal cliques represent clusters where all members know each other.
+A Clique of a graph is a set of vertices that forms a Complete Sub-graph. A maximal clique is a clique that cannot be extended by including one more adjacent vertex. In this part of the project I aim to find all the maximal cliques of the graph. This is commonly known as the Clique Problem and is [NP-complete](https://en.wikipedia.org/wiki/NP-completeness). Although there are algorithms to find all the maximal cliques of a graph they all have exponential running time. In solving this problem I plan to use the [Bron–Kerbosch algorithm](https://en.wikipedia.org/wiki/Bron%E2%80%93Kerbosch_algorithm) which is the most common one that is being used to tackle this problem currently. The maximal cliques of a graph give an insight into which subsets of nodes are closely knit. In other words in a social network the maximal cliques represent clusters where all members know each other.
 
 The below link points to the set of maximal cliques of the LinkedIn graph that I analyzed.
 
